@@ -1,5 +1,5 @@
 <div>
-    <form wire:submit='save'> <!-- Here we define that save() function that we just created will be called when user will submit a form  -->
+    <form wire:submit.prevent='save'> <!-- Here we define that save() function that we just created will be called when user will submit a form  -->
         <div class="form__field">
             <label>Title</label>
             <input type="text" wire:model='title' />
