@@ -15,11 +15,14 @@
         <input type="submit" value="Create product" />
     </form>
 
-    <div>
-        <ul>
-            <li>{{ $title }}</li>
-            <li>{{ $description }}</li>
-            <li>{{ $price }}</li>
-        </ul>
-    </div>
+    @foreach ($products as $product)
+        <div>
+            <ul>
+                <li>{{ $product->title }}</li>
+                <li>{{ $product->description }}</li>
+                <li>{{ $product->price }}</li>
+            </ul>
+        </div>
+    @endforeach
+
 </div>

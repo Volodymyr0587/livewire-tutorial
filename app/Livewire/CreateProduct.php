@@ -7,6 +7,7 @@ use Livewire\Component;
 
 class CreateProduct extends Component
 {
+    public $products;
     public $title = 'Default title value';
 
     public $description = 'Default description value';
@@ -15,6 +16,7 @@ class CreateProduct extends Component
 
     public function render()
     {
+        $this->products = Product::all();
         return view('livewire.create-product');
     }
 
