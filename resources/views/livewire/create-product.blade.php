@@ -14,4 +14,12 @@
         </div>
         <input type="submit" value="Create product" />
     </form>
+
+    <div>
+        <ul>
+            <li>{{ $title }}</li>
+            <li>{{ $description }}</li>
+            <li>{{ $price }}</li>
+        </ul>
+    </div>
 </div>

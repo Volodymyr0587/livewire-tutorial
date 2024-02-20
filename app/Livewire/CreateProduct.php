@@ -22,6 +22,6 @@ class CreateProduct extends Component
      */
     public function save()
     {
-        dd([$this->title, $this->description, $this->price]);
+        // dd([$this->title, $this->description, $this->price]);
     }
 }
