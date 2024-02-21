@@ -37,6 +37,7 @@ class PostComponent extends Component
     public function openModal()
     {
         $this->isOpen = true;
+        $this->resetValidation();
     }
 
     public function closeModal()
