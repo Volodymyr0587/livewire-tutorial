@@ -46,6 +46,8 @@ class PostComponent extends Component
     }
     public function render()
     {
-        return view('livewire.post-component');
+        return view('livewire.post-component', [
+            'posts' => Post::all(),
+        ]);
     }
 }
