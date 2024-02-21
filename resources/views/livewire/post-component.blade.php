@@ -124,6 +124,7 @@
                         <p>No post found</p>
                         @endforelse
                     </table>
+                    {{ $posts->links() }}
                 </div>
 
             </div>
