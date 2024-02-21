@@ -64,6 +64,13 @@ class PostComponent extends Component
         }
     }
 
+    public function delete($id)
+    {
+        Post::find($id)->delete();
+        session()->flash('success', 'Post deleted successfully.');
+        $this->reset('title','body');
+    }
+
     public function openModal()
     {
         $this->isOpen = true;
