@@ -16,14 +16,14 @@
                        <path d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z" />
                    </svg>
                         <h2 class="text-2xl font-bold mb-4">Create Post</h2>
-                        <form>
+                        <form wire:submit="store">
                             <div class="mb-4">
                                 <label for="title" class="block text-gray-700 font-bold mb-2">Title:</label>
-                                <input type="text" id="title" class="w-full border border-gray-300 px-4 py-2 rounded">
+                                <input type="text" wire:model="title" id="title" class="w-full border border-gray-300 px-4 py-2 rounded">
                             </div>
                             <div class="mb-4">
                                 <label for="body" class="block text-gray-700 font-bold mb-2">Body:</label>
-                                <textarea id="body" rows="4" class="w-full border border-gray-300 px-4 py-2 rounded"></textarea>
+                                <textarea wire:model="body" id="body" rows="4" class="w-full border border-gray-300 px-4 py-2 rounded"></textarea>
                             </div>
                             <div class="flex justify-end">
 
