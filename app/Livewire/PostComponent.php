@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use App\Livewire\Forms\PostForm;
 use App\Models\Post;
 use Livewire\Component;
 use Livewire\Attributes\Rule;
@@ -13,30 +14,22 @@ class PostComponent extends Component
 
     public $postId;
 
+    public PostForm $form;
+
     public $isOpen = 0;
-
-    #[Rule('required|min:3')]
-    public $title;
-
-    #[Rule('required|min:3')]
-    public $body;
 
     public function create()
     {
-        $this->reset('title','body','postId');
+        $this->reset('form.title','form.body', 'postId');
         $this->openModal();
     }
 
     public function store()
     {
         $this->validate();
-        Post::create([
-            'title' => $this->title,
-            'body' => $this->body,
-        ]);
-        session()->flash('success', 'Post created successfully');
-
-        $this->reset('title', 'body');
+        $this->form->save();
+        session()->flash('success', 'Post created successfully.');
+        $this->reset('form.title','form.body');
         $this->closeModal();
     }
 
@@ -44,8 +37,8 @@ class PostComponent extends Component
     {
         $post = Post::findOrFail($id);
         $this->postId = $id;
-        $this->title = $post->title;
-        $this->body = $post->body;
+        $this->form->title = $post->title;
+        $this->form->body = $post->body;
 
         $this->openModal();
     }
@@ -55,12 +48,13 @@ class PostComponent extends Component
         if ($this->postId) {
             $post = Post::findOrFail($this->postId);
             $post->update([
-                'title' => $this->title,
-                'body' => $this->body,
+                'title' => $this->form->title,
+                'body' => $this->form->body,
             ]);
+            $this->postId='';
             session()->flash('success', 'Post updated successfully.');
             $this->closeModal();
-            $this->reset('title', 'body', 'postId');
+            $this->reset('form.title','form.body');
         }
     }
 
@@ -68,7 +62,7 @@ class PostComponent extends Component
     {
         Post::find($id)->delete();
         session()->flash('success', 'Post deleted successfully.');
-        $this->reset('title','body');
+        $this->reset('form.title','form.body');
     }
 
     public function openModal()

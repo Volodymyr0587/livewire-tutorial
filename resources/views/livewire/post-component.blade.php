@@ -47,15 +47,15 @@
                             <form wire:submit.prevent="{{ $postId ? 'update' : 'store' }}">
                                 <div class="mb-4">
                                     <label for="title" class="block text-gray-700 font-bold mb-2">Title:</label>
-                                    <input type="text" wire:model="title" id="title"
+                                    <input type="text" wire:model="form.title" id="title"
                                         class="w-full border border-gray-300 px-4 py-2 rounded">
-                                    <span class="text-red-500">@error('title') {{ $message }} @enderror</span>
+                                    <span class="text-red-500">@error('form.title') {{ $message }} @enderror</span>
                                 </div>
                                 <div class="mb-4">
                                     <label for="body" class="block text-gray-700 font-bold mb-2">Body:</label>
-                                    <textarea wire:model="body" id="body" rows="4"
+                                    <textarea wire:model="form.body" id="body" rows="4"
                                         class="w-full border border-gray-300 px-4 py-2 rounded"></textarea>
-                                    <span class="text-red-500">@error('body') {{ $message }} @enderror</span>
+                                    <span class="text-red-500">@error('form.body') {{ $message }} @enderror</span>
                                 </div>
                                 <div class="flex justify-end">
 
