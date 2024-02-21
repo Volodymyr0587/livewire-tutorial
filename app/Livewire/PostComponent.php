@@ -28,6 +28,10 @@ class PostComponent extends Component
             'title' => $this->title,
             'body' => $this->body,
         ]);
+        session()->flash('success', 'Post created successfully');
+
+        $this->reset('title', 'body');
+        $this->closeModal();
     }
 
     public function openModal()
