@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use App\Models\Post;
 use Livewire\Component;
 use Livewire\Attributes\Rule;
 
@@ -18,6 +19,15 @@ class PostComponent extends Component
     public function create()
     {
         $this->openModal();
+    }
+
+    public function store()
+    {
+        $this->validate();
+        Post::create([
+            'title' => $this->title,
+            'body' => $this->body,
+        ]);
     }
 
     public function openModal()
