@@ -10,6 +10,9 @@ use Livewire\WithPagination;
 class PostComponent extends Component
 {
     use WithPagination;
+
+    public $postId;
+
     public $isOpen = 0;
 
     #[Rule('required|min:3')]
@@ -20,6 +23,7 @@ class PostComponent extends Component
 
     public function create()
     {
+        $this->reset('title','body','postId');
         $this->openModal();
     }
 
@@ -34,6 +38,30 @@ class PostComponent extends Component
 
         $this->reset('title', 'body');
         $this->closeModal();
+    }
+
+    public function edit($id)
+    {
+        $post = Post::findOrFail($id);
+        $this->postId = $id;
+        $this->title = $post->title;
+        $this->body = $post->body;
+
+        $this->openModal();
+    }
+
+    public function update()
+    {
+        if ($this->postId) {
+            $post = Post::findOrFail($this->postId);
+            $post->update([
+                'title' => $this->title,
+                'body' => $this->body,
+            ]);
+            session()->flash('success', 'Post updated successfully.');
+            $this->closeModal();
+            $this->reset('title', 'body', 'postId');
+        }
     }
 
     public function openModal()

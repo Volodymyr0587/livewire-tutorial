@@ -43,8 +43,8 @@
                                 <path
                                     d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z" />
                             </svg>
-                            <h2 class="text-2xl font-bold mb-4">Create Post</h2>
-                            <form wire:submit="store">
+                            <h2 class="text-2xl font-bold mb-4">{{ $postId ? 'Edit Post' : 'Create Post' }}</h2>
+                            <form wire:submit.prevent="{{ $postId ? 'update' : 'store' }}">
                                 <div class="mb-4">
                                     <label for="title" class="block text-gray-700 font-bold mb-2">Title:</label>
                                     <input type="text" wire:model="title" id="title"
@@ -60,7 +60,7 @@
                                 <div class="flex justify-end">
 
                                     <button type="submit"
-                                        class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded mr-2">Save</button>
+                                        class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded mr-2">{{ $postId ? 'Update' : 'Create' }}</button>
                                     <button type="button"
                                         class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded"
                                         wire:click="closeModal">Cancel</button>
@@ -100,7 +100,7 @@
                             </td>
 
                             <td class="px-6 py-4">
-                                <button class="">
+                                <button class="" wire:click="edit({{ $post->id }})">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                         stroke-width="1.5" stroke="currentColor" class="ml-2 mt-0 w-4 h-4">
                                         <path stroke-linecap="round" stroke-linejoin="round"
